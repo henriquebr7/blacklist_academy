@@ -1,0 +1,21 @@
+{
+	"id": "994406bb-026e-4001-8aba-12a8f7d2d257",
+	"values": [
+		{
+			"key": "tokenAdmin",
+			"value": "<JSON_WEB_TOKEN>",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "urlBaase",
+			"value": "https://api-blacklist.qacoders.dev.br/api",
+			"type": "default",
+			"enabled": true
+		}
+	],
+	"name": "Globals",
+	"_postman_variable_scope": "globals",
+	"_postman_exported_at": "2025-10-24T22:55:21.857Z",
+	"_postman_exported_using": "Postman/11.68.5"
+}

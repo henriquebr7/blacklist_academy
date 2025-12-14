@@ -1,0 +1,650 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.3.2 (Python 3.14.0 on win32)" generated="2025-11-10T20:22:22.193915" rpa="false" schemaversion="5">
+<suite id="s1" name="Users" source="C:\Users\henri\OneDrive\Área de Trabalho\academy\blacklist_academy\robot_framework_segunda_versao\resources\users.robot">
+<test id="s1-t1" name="Listar usuários" line="9">
+<kw name="Listar todos os usuários cadastrados">
+<kw name="Realizar login com credenciais validas e armazenar token">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-11-10T20:22:22.504845" level="INFO">${body} = {'mail': 'blacklist@qacoders.com', 'password': '1234@Test'}</msg>
+<var>${body}</var>
+<arg>mail=${EMAIL}</arg>
+<arg>password=${PASSWORD}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-11-10T20:22:22.504473" elapsed="0.000411"/>
+</kw>
+<kw name="Criar Sessao">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-11-10T20:22:22.505458" level="INFO">${headers} = {'accept': 'application/json', 'Content-Type': 'application/json'}</msg>
+<var>${headers}</var>
+<arg>accept=application/json</arg>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-11-10T20:22:22.505243" elapsed="0.000251"/>
+</kw>
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-11-10T20:22:22.505881" level="INFO">Creating Session using : alias=develop, url=https://api-blacklist.qacoders.dev.br/api, headers={'accept': 'application/json', 'Content-Type': 'application/json'},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>alias=develop</arg>
+<arg>url=${BASE_URL}</arg>
+<arg>headers=${headers}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-11-10T20:22:22.505631" elapsed="0.000695"/>
+</kw>
+<status status="PASS" start="2025-11-10T20:22:22.505039" elapsed="0.001392"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2025-11-10T20:22:23.707048" level="INFO">POST Request : url=https://api-blacklist.qacoders.dev.br/api/login 
+ path_url=/api/login 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'accept': 'application/json', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '59'} 
+ body=b'{"mail": "blacklist@qacoders.com", "password": "1234@Test"}' 
+ </msg>
+<msg time="2025-11-10T20:22:23.707380" level="INFO">POST Response : url=https://api-blacklist.qacoders.dev.br/api/login 
+ status=200, reason=OK 
+ headers={'Access-Control-Allow-Origin': '*', 'Content-Length': '883', 'Content-Type': 'application/json; charset=utf-8', 'Date': 'Mon, 10 Nov 2025 23:22:07 GMT', 'Etag': 'W/"373-JWemczxn1ztV3QZz3UDGmkLJ3P0"', 'X-Powered-By': 'Express'} 
+ body={"msg":"Olá Usuario de Testes, autenticação autorizada com sucesso!","user":{"_id":"691271b25d3e5cb01f1a4746","fullName":"Usuario de Testes","mail":"blacklist@qacoders.com","password":"$2b$10$kBWOKWlQsHtE9aPaEjHDNe6CUGKHv9bjpcNmUTTpnq47eTBCAqku6","accessProfile":"ADMIN","cpf":"12395678900","status":true,"audit":[{"registeredBy":{"userId":"69050eab5d3e5cb01f1946e9","userLogin":"diogo@sales.com"},"registrationDate":"segunda-feira, 10/11/2025, 20:13:53 BRT","registrationNumber":"QaCoders-10","_id":"691271b25d3e5cb01f1a4747"}],"__v":0},"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJ1c2VySWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJuYW1lIjoiVXN1YXJpbyBkZSBUZXN0ZXMiLCJtYWlsIjoiYmxhY2tsaXN0QHFhY29kZXJzLmNvbSIsImFjY2Vzc1Byb2ZpbGUiOiJBRE1JTiIsImlhdCI6MTc2MjgxNjkyNywiZXhwIjoxNzYyOTAzMzI3fQ.DMku6D9XHHWln0sV-C594AEyvjNzOmEISK7za9DsvEw"} 
+ </msg>
+<msg time="2025-11-10T20:22:23.707651" level="INFO">${bodyResponse} = &lt;Response [200]&gt;</msg>
+<var>${bodyResponse}</var>
+<arg>alias=develop</arg>
+<arg>url=/login</arg>
+<arg>json=${body}</arg>
+<arg>verify=${True}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-11-10T20:22:22.506558" elapsed="1.201156"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-11-10T20:22:23.708999" level="INFO">{'msg': 'Olá Usuario de Testes, autenticação autorizada com sucesso!', 'user': {'_id': '691271b25d3e5cb01f1a4746', 'fullName': 'Usuario de Testes', 'mail': 'blacklist@qacoders.com', 'password': '$2b$10$kBWOKWlQsHtE9aPaEjHDNe6CUGKHv9bjpcNmUTTpnq47eTBCAqku6', 'accessProfile': 'ADMIN', 'cpf': '12395678900', 'status': True, 'audit': [{'registeredBy': {'userId': '69050eab5d3e5cb01f1946e9', 'userLogin': 'diogo@sales.com'}, 'registrationDate': 'segunda-feira, 10/11/2025, 20:13:53 BRT', 'registrationNumber': 'QaCoders-10', '_id': '691271b25d3e5cb01f1a4747'}], '__v': 0}, 'token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJ1c2VySWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJuYW1lIjoiVXN1YXJpbyBkZSBUZXN0ZXMiLCJtYWlsIjoiYmxhY2tsaXN0QHFhY29kZXJzLmNvbSIsImFjY2Vzc1Byb2ZpbGUiOiJBRE1JTiIsImlhdCI6MTc2MjgxNjkyNywiZXhwIjoxNzYyOTAzMzI3fQ.DMku6D9XHHWln0sV-C594AEyvjNzOmEISK7za9DsvEw'}</msg>
+<arg>${bodyResponse.json()}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-11-10T20:22:23.708012" elapsed="0.001109"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-11-10T20:22:23.710208" level="INFO">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJ1c2VySWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJuYW1lIjoiVXN1YXJpbyBkZSBUZXN0ZXMiLCJtYWlsIjoiYmxhY2tsaXN0QHFhY29kZXJzLmNvbSIsImFjY2Vzc1Byb2ZpbGUiOiJBRE1JTiIsImlhdCI6MTc2MjgxNjkyNywiZXhwIjoxNzYyOTAzMzI3fQ.DMku6D9XHHWln0sV-C594AEyvjNzOmEISK7za9DsvEw</msg>
+<arg>${bodyResponse.json()['token']}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-11-10T20:22:23.709381" elapsed="0.000934"/>
+</kw>
+<kw name="Status Should Be" owner="RequestsLibrary">
+<arg>200</arg>
+<arg>${bodyResponse}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" start="2025-11-10T20:22:23.710548" elapsed="0.000468"/>
+</kw>
+<return>
+<value>${bodyResponse.json()['token']}</value>
+<status status="PASS" start="2025-11-10T20:22:23.711191" elapsed="0.000119"/>
+</return>
+<msg time="2025-11-10T20:22:23.712100" level="INFO">${token} = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJ1c2VySWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJuYW1lIjoiVXN1YXJpbyBkZSBUZXN0ZXMiLCJtYWlsIjoiYmxhY2tsaXN0QHFhY29kZXJ...</msg>
+<var>${token}</var>
+<status status="PASS" start="2025-11-10T20:22:22.503766" elapsed="1.208392"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2025-11-10T20:22:23.768979" level="INFO">GET Request : url=https://api-blacklist.qacoders.dev.br/api/user?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJ1c2VySWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJuYW1lIjoiVXN1YXJpbyBkZSBUZXN0ZXMiLCJtYWlsIjoiYmxhY2tsaXN0QHFhY29kZXJzLmNvbSIsImFjY2Vzc1Byb2ZpbGUiOiJBRE1JTiIsImlhdCI6MTc2MjgxNjkyNywiZXhwIjoxNzYyOTAzMzI3fQ.DMku6D9XHHWln0sV-C594AEyvjNzOmEISK7za9DsvEw 
+ path_url=/api/user?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJ1c2VySWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJuYW1lIjoiVXN1YXJpbyBkZSBUZXN0ZXMiLCJtYWlsIjoiYmxhY2tsaXN0QHFhY29kZXJzLmNvbSIsImFjY2Vzc1Byb2ZpbGUiOiJBRE1JTiIsImlhdCI6MTc2MjgxNjkyNywiZXhwIjoxNzYyOTAzMzI3fQ.DMku6D9XHHWln0sV-C594AEyvjNzOmEISK7za9DsvEw 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'accept': 'application/json', 'Connection': 'keep-alive', 'Content-Type': 'application/json'} 
+ body=None 
+ </msg>
+<msg time="2025-11-10T20:22:23.769683" level="INFO">GET Response : url=https://api-blacklist.qacoders.dev.br/api/user?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJ1c2VySWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJuYW1lIjoiVXN1YXJpbyBkZSBUZXN0ZXMiLCJtYWlsIjoiYmxhY2tsaXN0QHFhY29kZXJzLmNvbSIsImFjY2Vzc1Byb2ZpbGUiOiJBRE1JTiIsImlhdCI6MTc2MjgxNjkyNywiZXhwIjoxNzYyOTAzMzI3fQ.DMku6D9XHHWln0sV-C594AEyvjNzOmEISK7za9DsvEw 
+ status=200, reason=OK 
+ headers={'Access-Control-Allow-Origin': '*', 'Content-Length': '4178', 'Content-Type': 'application/json; charset=utf-8', 'Date': 'Mon, 10 Nov 2025 23:22:07 GMT', 'Etag': 'W/"1052-yn6AS4d7+HNrZuNyPpWMdo8X03Y"', 'X-Powered-By': 'Express'} 
+ body=[{"_id":"69050eab5d3e5cb01f1946e9","fullName":"Diogo Sales","mail":"diogo@sales.com","password":"$2b$10$p9kQoUOVM62ff/S73ISx4eM0l30lXR1XKNf62n2tHa/seemmwlBLC","accessProfile":"ADMIN","cpf":"40551627395","status":true,"audit":[{"registeredBy":{"userId":"6904cd1b5d3e5cb01f1946a5","userLogin":"sysadmin@qacoders.com"},"registrationDate":"sexta-feira, 31/10/2025, 16:31:54 BRT","registrationNumber":"QaCoders-2","_id":"69050eab5d3e5cb01f1946ea"}],"__v":0},{"_id":"6912726b5d3e5cb01f1a47d2","fullName":"Libbie Herman","mail":"Jaycee.Rice324@hotmail.com","password":"$2b$10$ggFSwo6QabKAQRfNmVJGGeMNALpEYHVK265V0Ts5J7/RERAcocCC.","accessProfile":"ADMIN","cpf":"13120264592","status":true,"audit":[{"registeredBy":{"userId":"691271b25d3e5cb01f1a4746","userLogin":"blacklist@qacoders.com"},"registrationDate":"segunda-feira, 10/11/2025, 20:16:58 BRT","registrationNumber":"QaCoders-11","_id":"6912726b5d3e5cb01f1a47d3"}],"__v":0},{"_id":"69126ca85d3e5cb01f1a4645","fullName":"Novo Nome","mail":"novo.email71@qacoders.com","password":"$2b$10$1XciyfB.v3jC5AG1ENdKqu3Pwj0/6dNzx8rQRxRyLu2fr/GkLNEIy","accessProfile":"ADMIN","cpf":"12345333902","status":true,"audit":[{"registeredBy":{"userId":"6904cd1b5d3e5cb01f1946a5","userLogin":"sysadmin@qacoders.com"},"registrationDate":"segunda-feira, 10/11/2025, 19:52:22 BRT","registrationNumber":"QaCoders-8","_id":"69126ca85d3e5cb01f1a4646"}],"__v":0},{"_id":"69126d955d3e5cb01f1a4692","fullName":"Novo Nome","mail":"novo.email45@qacoders.com","password":"$2b$10$TMaRtRK4FPcKa6hYTJOsTecXEaMa0VH6Eawus8hy.C7cWg8NxkpEe","accessProfile":"ADMIN","cpf":"12345373902","status":true,"audit":[{"registeredBy":{"userId":"6904cd1b5d3e5cb01f1946a5","userLogin":"sysadmin@qacoders.com"},"registrationDate":"segunda-feira, 10/11/2025, 19:56:20 BRT","registrationNumber":"QaCoders-9","_id":"69126d955d3e5cb01f1a4693"}],"__v":0},{"_id":"690928bcec110178464ac3a5","fullName":"Rafael Esteves Pereira","mail":"Randall39@hotmail.com","password":"$2b$10$EfLrV0eE4/fH9B.1zqPpO.kRMbOn6kpt2eTdkjVYPtRP0SbZAONLi","accessProfile":"ADMIN","cpf":"01220787213","status":true,"audit":[{"registeredBy":{"userId":"6904cd1b5d3e5cb01f1946a5","userLogin":"sysadmin@qacoders.com"},"registrationDate":"segunda-feira, 03/11/2025, 19:12:11 BRT","registrationNumber":"QaCoders-3","_id":"690928bcec110178464ac3a6"}],"__v":0},{"_id":"69092bf6ec110178464ac3d4","fullName":"Tessssssteeee do Teste","mail":"teeesssestt@test.com.br","password":"$2b$10$JMy1vA8okdQOgH9xFi/GWel2nOZugXzEt7MyFtfdFfmQ5V7oV7ZGy","accessProfile":"ADMIN","cpf":"15643693344","status":true,"audit":[{"registeredBy":{"userId":"6904cd1b5d3e5cb01f1946a5","userLogin":"sysadmin@qacoders.com"},"registrationDate":"segunda-feira, 03/11/2025, 19:25:58 BRT","registrationNumber":"QaCoders-6","_id":"69092bf6ec110178464ac3d5"}],"__v":0},{"_id":"6912723a5d3e5cb01f1a47b6","fullName":"Teste do Teste","mail":"testqa@test.com.br","password":"$2b$10$21TP2.ixeSYjKUGnWNPLG.Md0Ihzn9NKuRxbmMrtDTJX5xXXJgeYi","accessProfile":"ADMIN","cpf":"11122233347","status":true,"audit":[{"registeredBy":{"userId":"691271b25d3e5cb01f1a4746","userLogin":"blacklist@qacoders.com"},"registrationDate":"segunda-feira, 10/11/2025, 20:16:10 BRT","registrationNumber":"QaCoders-10","_id":"6912723a5d3e5cb01f1a47b7"}],"__v":0},{"_id":"69092b70ec110178464ac3ca","fullName":"Testeeee do Teste","mail":"teeeest@test.com.br","password":"$2b$10$xaM0NPWE5EQGWVDQcA1hWeUYZ8X9H9KFI/a3xAbsEXQ2zHIAfI.Dy","accessProfile":"ADMIN","cpf":"15642233344","status":true,"audit":[{"registeredBy":{"userId":"6904cd1b5d3e5cb01f1946a5","userLogin":"sysadmin@qacoders.com"},"registrationDate":"segunda-feira, 03/11/2025, 19:23:43 BRT","registrationNumber":"QaCoders-5","_id":"69092b70ec110178464ac3cb"}],"__v":0},{"_id":"691271b25d3e5cb01f1a4746","fullName":"Usuario de Testes","mail":"blacklist@qacoders.com","password":"$2b$10$kBWOKWlQsHtE9aPaEjHDNe6CUGKHv9bjpcNmUTTpnq47eTBCAqku6","accessProfile":"ADMIN","cpf":"12395678900","status":true,"audit":[{"registeredBy":{"userId":"69050eab5d3e5cb01f1946e9","userLogin":"diogo@sales.com"},"registrationDate":"segunda-feira, 10/11/2025, 20:13:53 BRT","registrationNumber":"QaCoders-10","_id":"691271b25d3e5cb01f1a4747"}],"__v":0}] 
+ </msg>
+<arg>alias=develop</arg>
+<arg>url=/user?token=${token}</arg>
+<arg>verify=${True}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-11-10T20:22:23.712353" elapsed="0.058383"/>
+</kw>
+<status status="PASS" start="2025-11-10T20:22:22.503364" elapsed="1.268154"/>
+</kw>
+<status status="PASS" start="2025-11-10T20:22:22.502683" elapsed="1.270328"/>
+</test>
+<test id="s1-t2" name="Listar usuário" line="12">
+<kw name="Listar usuário cadastrado por id">
+<kw name="Realizar login com credenciais validas e armazenar token">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-11-10T20:22:23.782286" level="INFO">${body} = {'mail': 'blacklist@qacoders.com', 'password': '1234@Test'}</msg>
+<var>${body}</var>
+<arg>mail=${EMAIL}</arg>
+<arg>password=${PASSWORD}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-11-10T20:22:23.780512" elapsed="0.001974"/>
+</kw>
+<kw name="Criar Sessao">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-11-10T20:22:23.785523" level="INFO">${headers} = {'accept': 'application/json', 'Content-Type': 'application/json'}</msg>
+<var>${headers}</var>
+<arg>accept=application/json</arg>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-11-10T20:22:23.784885" elapsed="0.000730"/>
+</kw>
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-11-10T20:22:23.786566" level="INFO">Creating Session using : alias=develop, url=https://api-blacklist.qacoders.dev.br/api, headers={'accept': 'application/json', 'Content-Type': 'application/json'},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>alias=develop</arg>
+<arg>url=${BASE_URL}</arg>
+<arg>headers=${headers}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-11-10T20:22:23.785984" elapsed="0.000937"/>
+</kw>
+<status status="PASS" start="2025-11-10T20:22:23.783185" elapsed="0.003930"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2025-11-10T20:22:24.814492" level="INFO">POST Request : url=https://api-blacklist.qacoders.dev.br/api/login 
+ path_url=/api/login 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'accept': 'application/json', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '59'} 
+ body=b'{"mail": "blacklist@qacoders.com", "password": "1234@Test"}' 
+ </msg>
+<msg time="2025-11-10T20:22:24.814607" level="INFO">POST Response : url=https://api-blacklist.qacoders.dev.br/api/login 
+ status=200, reason=OK 
+ headers={'Access-Control-Allow-Origin': '*', 'Content-Length': '883', 'Content-Type': 'application/json; charset=utf-8', 'Date': 'Mon, 10 Nov 2025 23:22:08 GMT', 'Etag': 'W/"373-qs6z5GinI2vN07qqYTmD2eUJ0Dg"', 'X-Powered-By': 'Express'} 
+ body={"msg":"Olá Usuario de Testes, autenticação autorizada com sucesso!","user":{"_id":"691271b25d3e5cb01f1a4746","fullName":"Usuario de Testes","mail":"blacklist@qacoders.com","password":"$2b$10$kBWOKWlQsHtE9aPaEjHDNe6CUGKHv9bjpcNmUTTpnq47eTBCAqku6","accessProfile":"ADMIN","cpf":"12395678900","status":true,"audit":[{"registeredBy":{"userId":"69050eab5d3e5cb01f1946e9","userLogin":"diogo@sales.com"},"registrationDate":"segunda-feira, 10/11/2025, 20:13:53 BRT","registrationNumber":"QaCoders-10","_id":"691271b25d3e5cb01f1a4747"}],"__v":0},"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJ1c2VySWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJuYW1lIjoiVXN1YXJpbyBkZSBUZXN0ZXMiLCJtYWlsIjoiYmxhY2tsaXN0QHFhY29kZXJzLmNvbSIsImFjY2Vzc1Byb2ZpbGUiOiJBRE1JTiIsImlhdCI6MTc2MjgxNjkyOCwiZXhwIjoxNzYyOTAzMzI4fQ.iK9q74E4QUfRM9cWaj1sw4k4Hiz3fkSJNZbYmnRmkQY"} 
+ </msg>
+<msg time="2025-11-10T20:22:24.814806" level="INFO">${bodyResponse} = &lt;Response [200]&gt;</msg>
+<var>${bodyResponse}</var>
+<arg>alias=develop</arg>
+<arg>url=/login</arg>
+<arg>json=${body}</arg>
+<arg>verify=${True}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-11-10T20:22:23.787392" elapsed="1.027456"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-11-10T20:22:24.815705" level="INFO">{'msg': 'Olá Usuario de Testes, autenticação autorizada com sucesso!', 'user': {'_id': '691271b25d3e5cb01f1a4746', 'fullName': 'Usuario de Testes', 'mail': 'blacklist@qacoders.com', 'password': '$2b$10$kBWOKWlQsHtE9aPaEjHDNe6CUGKHv9bjpcNmUTTpnq47eTBCAqku6', 'accessProfile': 'ADMIN', 'cpf': '12395678900', 'status': True, 'audit': [{'registeredBy': {'userId': '69050eab5d3e5cb01f1946e9', 'userLogin': 'diogo@sales.com'}, 'registrationDate': 'segunda-feira, 10/11/2025, 20:13:53 BRT', 'registrationNumber': 'QaCoders-10', '_id': '691271b25d3e5cb01f1a4747'}], '__v': 0}, 'token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJ1c2VySWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJuYW1lIjoiVXN1YXJpbyBkZSBUZXN0ZXMiLCJtYWlsIjoiYmxhY2tsaXN0QHFhY29kZXJzLmNvbSIsImFjY2Vzc1Byb2ZpbGUiOiJBRE1JTiIsImlhdCI6MTc2MjgxNjkyOCwiZXhwIjoxNzYyOTAzMzI4fQ.iK9q74E4QUfRM9cWaj1sw4k4Hiz3fkSJNZbYmnRmkQY'}</msg>
+<arg>${bodyResponse.json()}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-11-10T20:22:24.815049" elapsed="0.000741"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-11-10T20:22:24.816498" level="INFO">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJ1c2VySWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJuYW1lIjoiVXN1YXJpbyBkZSBUZXN0ZXMiLCJtYWlsIjoiYmxhY2tsaXN0QHFhY29kZXJzLmNvbSIsImFjY2Vzc1Byb2ZpbGUiOiJBRE1JTiIsImlhdCI6MTc2MjgxNjkyOCwiZXhwIjoxNzYyOTAzMzI4fQ.iK9q74E4QUfRM9cWaj1sw4k4Hiz3fkSJNZbYmnRmkQY</msg>
+<arg>${bodyResponse.json()['token']}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-11-10T20:22:24.815952" elapsed="0.000620"/>
+</kw>
+<kw name="Status Should Be" owner="RequestsLibrary">
+<arg>200</arg>
+<arg>${bodyResponse}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" start="2025-11-10T20:22:24.816742" elapsed="0.000242"/>
+</kw>
+<return>
+<value>${bodyResponse.json()['token']}</value>
+<status status="PASS" start="2025-11-10T20:22:24.817074" elapsed="0.000073"/>
+</return>
+<msg time="2025-11-10T20:22:24.817722" level="INFO">${token} = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJ1c2VySWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJuYW1lIjoiVXN1YXJpbyBkZSBUZXN0ZXMiLCJtYWlsIjoiYmxhY2tsaXN0QHFhY29kZXJ...</msg>
+<var>${token}</var>
+<status status="PASS" start="2025-11-10T20:22:23.778978" elapsed="1.038790"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2025-11-10T20:22:24.908627" level="INFO">GET Request : url=https://api-blacklist.qacoders.dev.br/api/user/690928bcec110178464ac3a5?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJ1c2VySWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJuYW1lIjoiVXN1YXJpbyBkZSBUZXN0ZXMiLCJtYWlsIjoiYmxhY2tsaXN0QHFhY29kZXJzLmNvbSIsImFjY2Vzc1Byb2ZpbGUiOiJBRE1JTiIsImlhdCI6MTc2MjgxNjkyOCwiZXhwIjoxNzYyOTAzMzI4fQ.iK9q74E4QUfRM9cWaj1sw4k4Hiz3fkSJNZbYmnRmkQY 
+ path_url=/api/user/690928bcec110178464ac3a5?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJ1c2VySWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJuYW1lIjoiVXN1YXJpbyBkZSBUZXN0ZXMiLCJtYWlsIjoiYmxhY2tsaXN0QHFhY29kZXJzLmNvbSIsImFjY2Vzc1Byb2ZpbGUiOiJBRE1JTiIsImlhdCI6MTc2MjgxNjkyOCwiZXhwIjoxNzYyOTAzMzI4fQ.iK9q74E4QUfRM9cWaj1sw4k4Hiz3fkSJNZbYmnRmkQY 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'accept': 'application/json', 'Connection': 'keep-alive', 'Content-Type': 'application/json'} 
+ body=None 
+ </msg>
+<msg time="2025-11-10T20:22:24.908828" level="INFO">GET Response : url=https://api-blacklist.qacoders.dev.br/api/user/690928bcec110178464ac3a5?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJ1c2VySWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJuYW1lIjoiVXN1YXJpbyBkZSBUZXN0ZXMiLCJtYWlsIjoiYmxhY2tsaXN0QHFhY29kZXJzLmNvbSIsImFjY2Vzc1Byb2ZpbGUiOiJBRE1JTiIsImlhdCI6MTc2MjgxNjkyOCwiZXhwIjoxNzYyOTAzMzI4fQ.iK9q74E4QUfRM9cWaj1sw4k4Hiz3fkSJNZbYmnRmkQY 
+ status=200, reason=OK 
+ headers={'Access-Control-Allow-Origin': '*', 'Content-Length': '470', 'Content-Type': 'application/json; charset=utf-8', 'Date': 'Mon, 10 Nov 2025 23:22:08 GMT', 'Etag': 'W/"1d6-41zz1DeUBRRKzG03k4Z5dkwKVOw"', 'X-Powered-By': 'Express'} 
+ body={"_id":"690928bcec110178464ac3a5","fullName":"Rafael Esteves Pereira","mail":"Randall39@hotmail.com","password":"$2b$10$EfLrV0eE4/fH9B.1zqPpO.kRMbOn6kpt2eTdkjVYPtRP0SbZAONLi","accessProfile":"ADMIN","cpf":"01220787213","status":true,"audit":[{"registeredBy":{"userId":"6904cd1b5d3e5cb01f1946a5","userLogin":"sysadmin@qacoders.com"},"registrationDate":"segunda-feira, 03/11/2025, 19:12:11 BRT","registrationNumber":"QaCoders-3","_id":"690928bcec110178464ac3a6"}],"__v":0} 
+ </msg>
+<arg>alias=develop</arg>
+<arg>url=/user/${USER_ID}?token=${token}</arg>
+<arg>verify=${True}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-11-10T20:22:24.817918" elapsed="0.091199"/>
+</kw>
+<status status="PASS" start="2025-11-10T20:22:23.777619" elapsed="1.131679"/>
+</kw>
+<status status="PASS" start="2025-11-10T20:22:23.775760" elapsed="1.134093"/>
+</test>
+<test id="s1-t3" name="Cadastrar usuario" line="15">
+<kw name="Cadastrar novo usuario">
+<kw name="Realizar login com credenciais validas e armazenar token">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-11-10T20:22:24.912641" level="INFO">${body} = {'mail': 'blacklist@qacoders.com', 'password': '1234@Test'}</msg>
+<var>${body}</var>
+<arg>mail=${EMAIL}</arg>
+<arg>password=${PASSWORD}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-11-10T20:22:24.912199" elapsed="0.000505"/>
+</kw>
+<kw name="Criar Sessao">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-11-10T20:22:24.913579" level="INFO">${headers} = {'accept': 'application/json', 'Content-Type': 'application/json'}</msg>
+<var>${headers}</var>
+<arg>accept=application/json</arg>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-11-10T20:22:24.913310" elapsed="0.000334"/>
+</kw>
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-11-10T20:22:24.914200" level="INFO">Creating Session using : alias=develop, url=https://api-blacklist.qacoders.dev.br/api, headers={'accept': 'application/json', 'Content-Type': 'application/json'},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>alias=develop</arg>
+<arg>url=${BASE_URL}</arg>
+<arg>headers=${headers}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-11-10T20:22:24.913840" elapsed="0.000597"/>
+</kw>
+<status status="PASS" start="2025-11-10T20:22:24.912972" elapsed="0.001597"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2025-11-10T20:22:26.103550" level="INFO">POST Request : url=https://api-blacklist.qacoders.dev.br/api/login 
+ path_url=/api/login 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'accept': 'application/json', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '59'} 
+ body=b'{"mail": "blacklist@qacoders.com", "password": "1234@Test"}' 
+ </msg>
+<msg time="2025-11-10T20:22:26.103688" level="INFO">POST Response : url=https://api-blacklist.qacoders.dev.br/api/login 
+ status=200, reason=OK 
+ headers={'Access-Control-Allow-Origin': '*', 'Content-Length': '883', 'Content-Type': 'application/json; charset=utf-8', 'Date': 'Mon, 10 Nov 2025 23:22:09 GMT', 'Etag': 'W/"373-lz1dkrEic7a/cYvFhWIaQHrjolw"', 'X-Powered-By': 'Express'} 
+ body={"msg":"Olá Usuario de Testes, autenticação autorizada com sucesso!","user":{"_id":"691271b25d3e5cb01f1a4746","fullName":"Usuario de Testes","mail":"blacklist@qacoders.com","password":"$2b$10$kBWOKWlQsHtE9aPaEjHDNe6CUGKHv9bjpcNmUTTpnq47eTBCAqku6","accessProfile":"ADMIN","cpf":"12395678900","status":true,"audit":[{"registeredBy":{"userId":"69050eab5d3e5cb01f1946e9","userLogin":"diogo@sales.com"},"registrationDate":"segunda-feira, 10/11/2025, 20:13:53 BRT","registrationNumber":"QaCoders-10","_id":"691271b25d3e5cb01f1a4747"}],"__v":0},"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJ1c2VySWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJuYW1lIjoiVXN1YXJpbyBkZSBUZXN0ZXMiLCJtYWlsIjoiYmxhY2tsaXN0QHFhY29kZXJzLmNvbSIsImFjY2Vzc1Byb2ZpbGUiOiJBRE1JTiIsImlhdCI6MTc2MjgxNjkyOSwiZXhwIjoxNzYyOTAzMzI5fQ.p1qu8kM1U9p0uOhVbBW9soCa66yvjl_IszYms-gQtlg"} 
+ </msg>
+<msg time="2025-11-10T20:22:26.103931" level="INFO">${bodyResponse} = &lt;Response [200]&gt;</msg>
+<var>${bodyResponse}</var>
+<arg>alias=develop</arg>
+<arg>url=/login</arg>
+<arg>json=${body}</arg>
+<arg>verify=${True}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-11-10T20:22:24.914769" elapsed="1.189212"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-11-10T20:22:26.105236" level="INFO">{'msg': 'Olá Usuario de Testes, autenticação autorizada com sucesso!', 'user': {'_id': '691271b25d3e5cb01f1a4746', 'fullName': 'Usuario de Testes', 'mail': 'blacklist@qacoders.com', 'password': '$2b$10$kBWOKWlQsHtE9aPaEjHDNe6CUGKHv9bjpcNmUTTpnq47eTBCAqku6', 'accessProfile': 'ADMIN', 'cpf': '12395678900', 'status': True, 'audit': [{'registeredBy': {'userId': '69050eab5d3e5cb01f1946e9', 'userLogin': 'diogo@sales.com'}, 'registrationDate': 'segunda-feira, 10/11/2025, 20:13:53 BRT', 'registrationNumber': 'QaCoders-10', '_id': '691271b25d3e5cb01f1a4747'}], '__v': 0}, 'token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJ1c2VySWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJuYW1lIjoiVXN1YXJpbyBkZSBUZXN0ZXMiLCJtYWlsIjoiYmxhY2tsaXN0QHFhY29kZXJzLmNvbSIsImFjY2Vzc1Byb2ZpbGUiOiJBRE1JTiIsImlhdCI6MTc2MjgxNjkyOSwiZXhwIjoxNzYyOTAzMzI5fQ.p1qu8kM1U9p0uOhVbBW9soCa66yvjl_IszYms-gQtlg'}</msg>
+<arg>${bodyResponse.json()}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-11-10T20:22:26.104256" elapsed="0.001085"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-11-10T20:22:26.106477" level="INFO">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJ1c2VySWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJuYW1lIjoiVXN1YXJpbyBkZSBUZXN0ZXMiLCJtYWlsIjoiYmxhY2tsaXN0QHFhY29kZXJzLmNvbSIsImFjY2Vzc1Byb2ZpbGUiOiJBRE1JTiIsImlhdCI6MTc2MjgxNjkyOSwiZXhwIjoxNzYyOTAzMzI5fQ.p1qu8kM1U9p0uOhVbBW9soCa66yvjl_IszYms-gQtlg</msg>
+<arg>${bodyResponse.json()['token']}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-11-10T20:22:26.105556" elapsed="0.001069"/>
+</kw>
+<kw name="Status Should Be" owner="RequestsLibrary">
+<arg>200</arg>
+<arg>${bodyResponse}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" start="2025-11-10T20:22:26.106909" elapsed="0.000416"/>
+</kw>
+<return>
+<value>${bodyResponse.json()['token']}</value>
+<status status="PASS" start="2025-11-10T20:22:26.107466" elapsed="0.000118"/>
+</return>
+<msg time="2025-11-10T20:22:26.108270" level="INFO">${token} = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJ1c2VySWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJuYW1lIjoiVXN1YXJpbyBkZSBUZXN0ZXMiLCJtYWlsIjoiYmxhY2tsaXN0QHFhY29kZXJ...</msg>
+<var>${token}</var>
+<status status="PASS" start="2025-11-10T20:22:24.911835" elapsed="1.196482"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-11-10T20:22:26.109026" level="INFO">${body} = {'fullName': 'Libbie Herman', 'mail': 'Jaycee.Rice924@hotmail.com', 'accessProfile': 'ADMIN', 'cpf': '13120764592', 'password': '5678@Test', 'confirmPassword': '5678@Test'}</msg>
+<var>${body}</var>
+<arg>fullName=${USER_FULLNAME}</arg>
+<arg>mail=${USER_MAIL}</arg>
+<arg>accessProfile=${ACCESS_PROFILE}</arg>
+<arg>cpf=${USER_CPF}</arg>
+<arg>password=${NEW_PASSWORD}</arg>
+<arg>confirmPassword=${CONFIRM_PASSWORD}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-11-10T20:22:26.108514" elapsed="0.000557"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2025-11-10T20:22:27.008717" level="INFO">POST Request : url=https://api-blacklist.qacoders.dev.br/api/user?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJ1c2VySWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJuYW1lIjoiVXN1YXJpbyBkZSBUZXN0ZXMiLCJtYWlsIjoiYmxhY2tsaXN0QHFhY29kZXJzLmNvbSIsImFjY2Vzc1Byb2ZpbGUiOiJBRE1JTiIsImlhdCI6MTc2MjgxNjkyOSwiZXhwIjoxNzYyOTAzMzI5fQ.p1qu8kM1U9p0uOhVbBW9soCa66yvjl_IszYms-gQtlg 
+ path_url=/api/user?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJ1c2VySWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJuYW1lIjoiVXN1YXJpbyBkZSBUZXN0ZXMiLCJtYWlsIjoiYmxhY2tsaXN0QHFhY29kZXJzLmNvbSIsImFjY2Vzc1Byb2ZpbGUiOiJBRE1JTiIsImlhdCI6MTc2MjgxNjkyOSwiZXhwIjoxNzYyOTAzMzI5fQ.p1qu8kM1U9p0uOhVbBW9soCa66yvjl_IszYms-gQtlg 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'accept': 'application/json', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '172'} 
+ body=b'{"fullName": "Libbie Herman", "mail": "Jaycee.Rice924@hotmail.com", "accessProfile": "ADMIN", "cpf": "13120764592", "password": "5678@Test", "confirmPassword": "5678@Test"}' 
+ </msg>
+<msg time="2025-11-10T20:22:27.008943" level="INFO">POST Response : url=https://api-blacklist.qacoders.dev.br/api/user?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJ1c2VySWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJuYW1lIjoiVXN1YXJpbyBkZSBUZXN0ZXMiLCJtYWlsIjoiYmxhY2tsaXN0QHFhY29kZXJzLmNvbSIsImFjY2Vzc1Byb2ZpbGUiOiJBRE1JTiIsImlhdCI6MTc2MjgxNjkyOSwiZXhwIjoxNzYyOTAzMzI5fQ.p1qu8kM1U9p0uOhVbBW9soCa66yvjl_IszYms-gQtlg 
+ status=201, reason=Created 
+ headers={'Access-Control-Allow-Origin': '*', 'Content-Length': '463', 'Content-Type': 'application/json; charset=utf-8', 'Date': 'Mon, 10 Nov 2025 23:22:10 GMT', 'Etag': 'W/"1cf-7dZrXc/YRSjFbBqZEijNGrGoDLo"', 'X-Powered-By': 'Express'} 
+ body={"msg":"Olá Libbie Herman, Registro realizado com sucesso.","user":{"_id":"691273a25d3e5cb01f1a48ab","fullName":"Libbie Herman","mail":"Jaycee.Rice924@hotmail.com","accessProfile":"ADMIN","cpf":"13120764592","status":true,"audit":[{"registeredBy":{"userId":"691271b25d3e5cb01f1a4746","userLogin":"blacklist@qacoders.com"},"registrationDate":"segunda-feira, 10/11/2025, 20:22:09 BRT","registrationNumber":"QaCoders-10","_id":"691273a25d3e5cb01f1a48ac"}],"__v":0}} 
+ </msg>
+<msg time="2025-11-10T20:22:27.009203" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<var>${response}</var>
+<arg>alias=develop</arg>
+<arg>url=/user?token=${token}</arg>
+<arg>json=${body}</arg>
+<arg>verify=${True}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-11-10T20:22:26.109237" elapsed="0.900024"/>
+</kw>
+<kw name="Status Should Be" owner="RequestsLibrary">
+<arg>201</arg>
+<arg>${response}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" start="2025-11-10T20:22:27.009539" elapsed="0.000439"/>
+</kw>
+<status status="PASS" start="2025-11-10T20:22:24.911326" elapsed="2.098836"/>
+</kw>
+<status status="PASS" start="2025-11-10T20:22:24.910694" elapsed="2.100052"/>
+</test>
+<test id="s1-t4" name="Atualizar status do usuário" line="19">
+<kw name="Inativar usuario cadastrado por id">
+<kw name="Realizar login com credenciais validas e armazenar token">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-11-10T20:22:27.014740" level="INFO">${body} = {'mail': 'blacklist@qacoders.com', 'password': '1234@Test'}</msg>
+<var>${body}</var>
+<arg>mail=${EMAIL}</arg>
+<arg>password=${PASSWORD}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-11-10T20:22:27.013838" elapsed="0.000999"/>
+</kw>
+<kw name="Criar Sessao">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-11-10T20:22:27.016405" level="INFO">${headers} = {'accept': 'application/json', 'Content-Type': 'application/json'}</msg>
+<var>${headers}</var>
+<arg>accept=application/json</arg>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-11-10T20:22:27.015863" elapsed="0.000621"/>
+</kw>
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-11-10T20:22:27.017102" level="INFO">Creating Session using : alias=develop, url=https://api-blacklist.qacoders.dev.br/api, headers={'accept': 'application/json', 'Content-Type': 'application/json'},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>alias=develop</arg>
+<arg>url=${BASE_URL}</arg>
+<arg>headers=${headers}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-11-10T20:22:27.016709" elapsed="0.000801"/>
+</kw>
+<status status="PASS" start="2025-11-10T20:22:27.015335" elapsed="0.002644"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2025-11-10T20:22:28.203457" level="INFO">POST Request : url=https://api-blacklist.qacoders.dev.br/api/login 
+ path_url=/api/login 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'accept': 'application/json', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '59'} 
+ body=b'{"mail": "blacklist@qacoders.com", "password": "1234@Test"}' 
+ </msg>
+<msg time="2025-11-10T20:22:28.203560" level="INFO">POST Response : url=https://api-blacklist.qacoders.dev.br/api/login 
+ status=200, reason=OK 
+ headers={'Access-Control-Allow-Origin': '*', 'Content-Length': '883', 'Content-Type': 'application/json; charset=utf-8', 'Date': 'Mon, 10 Nov 2025 23:22:11 GMT', 'Etag': 'W/"373-0PUquXhNJ8OqFVrTULTwVYPWXDA"', 'X-Powered-By': 'Express'} 
+ body={"msg":"Olá Usuario de Testes, autenticação autorizada com sucesso!","user":{"_id":"691271b25d3e5cb01f1a4746","fullName":"Usuario de Testes","mail":"blacklist@qacoders.com","password":"$2b$10$kBWOKWlQsHtE9aPaEjHDNe6CUGKHv9bjpcNmUTTpnq47eTBCAqku6","accessProfile":"ADMIN","cpf":"12395678900","status":true,"audit":[{"registeredBy":{"userId":"69050eab5d3e5cb01f1946e9","userLogin":"diogo@sales.com"},"registrationDate":"segunda-feira, 10/11/2025, 20:13:53 BRT","registrationNumber":"QaCoders-10","_id":"691271b25d3e5cb01f1a4747"}],"__v":0},"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJ1c2VySWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJuYW1lIjoiVXN1YXJpbyBkZSBUZXN0ZXMiLCJtYWlsIjoiYmxhY2tsaXN0QHFhY29kZXJzLmNvbSIsImFjY2Vzc1Byb2ZpbGUiOiJBRE1JTiIsImlhdCI6MTc2MjgxNjkzMSwiZXhwIjoxNzYyOTAzMzMxfQ.qfH8rIMeCbBnhLMvwhRP_JB47TD5sT7MUjCRMIwyBCA"} 
+ </msg>
+<msg time="2025-11-10T20:22:28.203753" level="INFO">${bodyResponse} = &lt;Response [200]&gt;</msg>
+<var>${bodyResponse}</var>
+<arg>alias=develop</arg>
+<arg>url=/login</arg>
+<arg>json=${body}</arg>
+<arg>verify=${True}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-11-10T20:22:27.018295" elapsed="1.185493"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-11-10T20:22:28.204465" level="INFO">{'msg': 'Olá Usuario de Testes, autenticação autorizada com sucesso!', 'user': {'_id': '691271b25d3e5cb01f1a4746', 'fullName': 'Usuario de Testes', 'mail': 'blacklist@qacoders.com', 'password': '$2b$10$kBWOKWlQsHtE9aPaEjHDNe6CUGKHv9bjpcNmUTTpnq47eTBCAqku6', 'accessProfile': 'ADMIN', 'cpf': '12395678900', 'status': True, 'audit': [{'registeredBy': {'userId': '69050eab5d3e5cb01f1946e9', 'userLogin': 'diogo@sales.com'}, 'registrationDate': 'segunda-feira, 10/11/2025, 20:13:53 BRT', 'registrationNumber': 'QaCoders-10', '_id': '691271b25d3e5cb01f1a4747'}], '__v': 0}, 'token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJ1c2VySWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJuYW1lIjoiVXN1YXJpbyBkZSBUZXN0ZXMiLCJtYWlsIjoiYmxhY2tsaXN0QHFhY29kZXJzLmNvbSIsImFjY2Vzc1Byb2ZpbGUiOiJBRE1JTiIsImlhdCI6MTc2MjgxNjkzMSwiZXhwIjoxNzYyOTAzMzMxfQ.qfH8rIMeCbBnhLMvwhRP_JB47TD5sT7MUjCRMIwyBCA'}</msg>
+<arg>${bodyResponse.json()}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-11-10T20:22:28.203962" elapsed="0.000569"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-11-10T20:22:28.205101" level="INFO">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJ1c2VySWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJuYW1lIjoiVXN1YXJpbyBkZSBUZXN0ZXMiLCJtYWlsIjoiYmxhY2tsaXN0QHFhY29kZXJzLmNvbSIsImFjY2Vzc1Byb2ZpbGUiOiJBRE1JTiIsImlhdCI6MTc2MjgxNjkzMSwiZXhwIjoxNzYyOTAzMzMxfQ.qfH8rIMeCbBnhLMvwhRP_JB47TD5sT7MUjCRMIwyBCA</msg>
+<arg>${bodyResponse.json()['token']}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-11-10T20:22:28.204664" elapsed="0.000502"/>
+</kw>
+<kw name="Status Should Be" owner="RequestsLibrary">
+<arg>200</arg>
+<arg>${bodyResponse}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" start="2025-11-10T20:22:28.205294" elapsed="0.000295"/>
+</kw>
+<return>
+<value>${bodyResponse.json()['token']}</value>
+<status status="PASS" start="2025-11-10T20:22:28.205702" elapsed="0.000083"/>
+</return>
+<msg time="2025-11-10T20:22:28.206455" level="INFO">${token} = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJ1c2VySWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJuYW1lIjoiVXN1YXJpbyBkZSBUZXN0ZXMiLCJtYWlsIjoiYmxhY2tsaXN0QHFhY29kZXJ...</msg>
+<var>${token}</var>
+<status status="PASS" start="2025-11-10T20:22:27.013357" elapsed="1.193179"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-11-10T20:22:28.206893" level="INFO">${body} = {'status': 'false'}</msg>
+<var>${body}</var>
+<arg>status=false</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-11-10T20:22:28.206695" elapsed="0.000229"/>
+</kw>
+<kw name="PUT On Session" owner="RequestsLibrary">
+<msg time="2025-11-10T20:22:28.257494" level="INFO">PUT Request : url=https://api-blacklist.qacoders.dev.br/api/user/status/690928bcec110178464ac3a5?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJ1c2VySWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJuYW1lIjoiVXN1YXJpbyBkZSBUZXN0ZXMiLCJtYWlsIjoiYmxhY2tsaXN0QHFhY29kZXJzLmNvbSIsImFjY2Vzc1Byb2ZpbGUiOiJBRE1JTiIsImlhdCI6MTc2MjgxNjkzMSwiZXhwIjoxNzYyOTAzMzMxfQ.qfH8rIMeCbBnhLMvwhRP_JB47TD5sT7MUjCRMIwyBCA 
+ path_url=/api/user/status/690928bcec110178464ac3a5?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJ1c2VySWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJuYW1lIjoiVXN1YXJpbyBkZSBUZXN0ZXMiLCJtYWlsIjoiYmxhY2tsaXN0QHFhY29kZXJzLmNvbSIsImFjY2Vzc1Byb2ZpbGUiOiJBRE1JTiIsImlhdCI6MTc2MjgxNjkzMSwiZXhwIjoxNzYyOTAzMzMxfQ.qfH8rIMeCbBnhLMvwhRP_JB47TD5sT7MUjCRMIwyBCA 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'accept': 'application/json', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '0'} 
+ body=None 
+ </msg>
+<msg time="2025-11-10T20:22:28.257603" level="INFO">PUT Response : url=https://api-blacklist.qacoders.dev.br/api/user/status/690928bcec110178464ac3a5?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJ1c2VySWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJuYW1lIjoiVXN1YXJpbyBkZSBUZXN0ZXMiLCJtYWlsIjoiYmxhY2tsaXN0QHFhY29kZXJzLmNvbSIsImFjY2Vzc1Byb2ZpbGUiOiJBRE1JTiIsImlhdCI6MTc2MjgxNjkzMSwiZXhwIjoxNzYyOTAzMzMxfQ.qfH8rIMeCbBnhLMvwhRP_JB47TD5sT7MUjCRMIwyBCA 
+ status=200, reason=OK 
+ headers={'Access-Control-Allow-Origin': '*', 'Content-Length': '73', 'Content-Type': 'application/json; charset=utf-8', 'Date': 'Mon, 10 Nov 2025 23:22:11 GMT', 'Etag': 'W/"49-mdiC7oz1Cmq+pwNW1fICQEBGG7Y"', 'X-Powered-By': 'Express'} 
+ body={"msg":"Status do usuario atualizado com sucesso para status undefined."} 
+ </msg>
+<arg>alias=develop</arg>
+<arg>url=/user/status/${USER_ID}?token=${token}</arg>
+<arg>verify=${True}</arg>
+<doc>Sends a PUT request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-11-10T20:22:28.207044" elapsed="0.050675"/>
+</kw>
+<status status="PASS" start="2025-11-10T20:22:27.012657" elapsed="1.245168"/>
+</kw>
+<status status="PASS" start="2025-11-10T20:22:27.011843" elapsed="1.246288"/>
+</test>
+<test id="s1-t5" name="Atualizar dados do usuário" line="22">
+<kw name="Atualizar dados do usuário cadastrado por id">
+<kw name="Realizar login com credenciais validas e armazenar token">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-11-10T20:22:28.259770" level="INFO">${body} = {'mail': 'blacklist@qacoders.com', 'password': '1234@Test'}</msg>
+<var>${body}</var>
+<arg>mail=${EMAIL}</arg>
+<arg>password=${PASSWORD}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-11-10T20:22:28.259499" elapsed="0.000305"/>
+</kw>
+<kw name="Criar Sessao">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-11-10T20:22:28.260490" level="INFO">${headers} = {'accept': 'application/json', 'Content-Type': 'application/json'}</msg>
+<var>${headers}</var>
+<arg>accept=application/json</arg>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-11-10T20:22:28.260195" elapsed="0.000360"/>
+</kw>
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-11-10T20:22:28.261129" level="INFO">Creating Session using : alias=develop, url=https://api-blacklist.qacoders.dev.br/api, headers={'accept': 'application/json', 'Content-Type': 'application/json'},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>alias=develop</arg>
+<arg>url=${BASE_URL}</arg>
+<arg>headers=${headers}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-11-10T20:22:28.260741" elapsed="0.000648"/>
+</kw>
+<status status="PASS" start="2025-11-10T20:22:28.259940" elapsed="0.001552"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2025-11-10T20:22:29.312645" level="INFO">POST Request : url=https://api-blacklist.qacoders.dev.br/api/login 
+ path_url=/api/login 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'accept': 'application/json', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '59'} 
+ body=b'{"mail": "blacklist@qacoders.com", "password": "1234@Test"}' 
+ </msg>
+<msg time="2025-11-10T20:22:29.312753" level="INFO">POST Response : url=https://api-blacklist.qacoders.dev.br/api/login 
+ status=200, reason=OK 
+ headers={'Access-Control-Allow-Origin': '*', 'Content-Length': '883', 'Content-Type': 'application/json; charset=utf-8', 'Date': 'Mon, 10 Nov 2025 23:22:12 GMT', 'Etag': 'W/"373-zSTww3iBXm9hrXbReaGkpq+0OVo"', 'X-Powered-By': 'Express'} 
+ body={"msg":"Olá Usuario de Testes, autenticação autorizada com sucesso!","user":{"_id":"691271b25d3e5cb01f1a4746","fullName":"Usuario de Testes","mail":"blacklist@qacoders.com","password":"$2b$10$kBWOKWlQsHtE9aPaEjHDNe6CUGKHv9bjpcNmUTTpnq47eTBCAqku6","accessProfile":"ADMIN","cpf":"12395678900","status":true,"audit":[{"registeredBy":{"userId":"69050eab5d3e5cb01f1946e9","userLogin":"diogo@sales.com"},"registrationDate":"segunda-feira, 10/11/2025, 20:13:53 BRT","registrationNumber":"QaCoders-10","_id":"691271b25d3e5cb01f1a4747"}],"__v":0},"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJ1c2VySWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJuYW1lIjoiVXN1YXJpbyBkZSBUZXN0ZXMiLCJtYWlsIjoiYmxhY2tsaXN0QHFhY29kZXJzLmNvbSIsImFjY2Vzc1Byb2ZpbGUiOiJBRE1JTiIsImlhdCI6MTc2MjgxNjkzMiwiZXhwIjoxNzYyOTAzMzMyfQ.PmjX3mnePv9lb0O4FfHZbRz5ViiWDGOBuR6XpJLCrEw"} 
+ </msg>
+<msg time="2025-11-10T20:22:29.312951" level="INFO">${bodyResponse} = &lt;Response [200]&gt;</msg>
+<var>${bodyResponse}</var>
+<arg>alias=develop</arg>
+<arg>url=/login</arg>
+<arg>json=${body}</arg>
+<arg>verify=${True}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-11-10T20:22:28.261655" elapsed="1.051339"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-11-10T20:22:29.313846" level="INFO">{'msg': 'Olá Usuario de Testes, autenticação autorizada com sucesso!', 'user': {'_id': '691271b25d3e5cb01f1a4746', 'fullName': 'Usuario de Testes', 'mail': 'blacklist@qacoders.com', 'password': '$2b$10$kBWOKWlQsHtE9aPaEjHDNe6CUGKHv9bjpcNmUTTpnq47eTBCAqku6', 'accessProfile': 'ADMIN', 'cpf': '12395678900', 'status': True, 'audit': [{'registeredBy': {'userId': '69050eab5d3e5cb01f1946e9', 'userLogin': 'diogo@sales.com'}, 'registrationDate': 'segunda-feira, 10/11/2025, 20:13:53 BRT', 'registrationNumber': 'QaCoders-10', '_id': '691271b25d3e5cb01f1a4747'}], '__v': 0}, 'token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJ1c2VySWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJuYW1lIjoiVXN1YXJpbyBkZSBUZXN0ZXMiLCJtYWlsIjoiYmxhY2tsaXN0QHFhY29kZXJzLmNvbSIsImFjY2Vzc1Byb2ZpbGUiOiJBRE1JTiIsImlhdCI6MTc2MjgxNjkzMiwiZXhwIjoxNzYyOTAzMzMyfQ.PmjX3mnePv9lb0O4FfHZbRz5ViiWDGOBuR6XpJLCrEw'}</msg>
+<arg>${bodyResponse.json()}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-11-10T20:22:29.313203" elapsed="0.000731"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-11-10T20:22:29.314658" level="INFO">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJ1c2VySWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJuYW1lIjoiVXN1YXJpbyBkZSBUZXN0ZXMiLCJtYWlsIjoiYmxhY2tsaXN0QHFhY29kZXJzLmNvbSIsImFjY2Vzc1Byb2ZpbGUiOiJBRE1JTiIsImlhdCI6MTc2MjgxNjkzMiwiZXhwIjoxNzYyOTAzMzMyfQ.PmjX3mnePv9lb0O4FfHZbRz5ViiWDGOBuR6XpJLCrEw</msg>
+<arg>${bodyResponse.json()['token']}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-11-10T20:22:29.314123" elapsed="0.000608"/>
+</kw>
+<kw name="Status Should Be" owner="RequestsLibrary">
+<arg>200</arg>
+<arg>${bodyResponse}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" start="2025-11-10T20:22:29.314886" elapsed="0.000256"/>
+</kw>
+<return>
+<value>${bodyResponse.json()['token']}</value>
+<status status="PASS" start="2025-11-10T20:22:29.315243" elapsed="0.000061"/>
+</return>
+<msg time="2025-11-10T20:22:29.315865" level="INFO">${token} = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJ1c2VySWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJuYW1lIjoiVXN1YXJpbyBkZSBUZXN0ZXMiLCJtYWlsIjoiYmxhY2tsaXN0QHFhY29kZXJ...</msg>
+<var>${token}</var>
+<status status="PASS" start="2025-11-10T20:22:28.259265" elapsed="1.056645"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-11-10T20:22:29.316600" level="INFO">${body} = {'fullName': 'Libbie Herman', 'mail': 'usuario.editado132@qacoders.com', 'accessProfile': 'ADMIN', 'cpf': '13120764592', 'password': '5678@Test', 'confirmPassword': '5678@Test'}</msg>
+<var>${body}</var>
+<arg>fullName=${USER_FULLNAME}</arg>
+<arg>mail=${UPDATED_USER_EMAIL}</arg>
+<arg>accessProfile=${ACCESS_PROFILE}</arg>
+<arg>cpf=${USER_CPF}</arg>
+<arg>password=${NEW_PASSWORD}</arg>
+<arg>confirmPassword=${CONFIRM_PASSWORD}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-11-10T20:22:29.316091" elapsed="0.000554"/>
+</kw>
+<kw name="PUT On Session" owner="RequestsLibrary">
+<msg time="2025-11-10T20:22:29.409203" level="INFO">PUT Request : url=https://api-blacklist.qacoders.dev.br/api/user/690928bcec110178464ac3a5?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJ1c2VySWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJuYW1lIjoiVXN1YXJpbyBkZSBUZXN0ZXMiLCJtYWlsIjoiYmxhY2tsaXN0QHFhY29kZXJzLmNvbSIsImFjY2Vzc1Byb2ZpbGUiOiJBRE1JTiIsImlhdCI6MTc2MjgxNjkzMiwiZXhwIjoxNzYyOTAzMzMyfQ.PmjX3mnePv9lb0O4FfHZbRz5ViiWDGOBuR6XpJLCrEw 
+ path_url=/api/user/690928bcec110178464ac3a5?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJ1c2VySWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJuYW1lIjoiVXN1YXJpbyBkZSBUZXN0ZXMiLCJtYWlsIjoiYmxhY2tsaXN0QHFhY29kZXJzLmNvbSIsImFjY2Vzc1Byb2ZpbGUiOiJBRE1JTiIsImlhdCI6MTc2MjgxNjkzMiwiZXhwIjoxNzYyOTAzMzMyfQ.PmjX3mnePv9lb0O4FfHZbRz5ViiWDGOBuR6XpJLCrEw 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'accept': 'application/json', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '177'} 
+ body=b'{"fullName": "Libbie Herman", "mail": "usuario.editado132@qacoders.com", "accessProfile": "ADMIN", "cpf": "13120764592", "password": "5678@Test", "confirmPassword": "5678@Test"}' 
+ </msg>
+<msg time="2025-11-10T20:22:29.409428" level="INFO">PUT Response : url=https://api-blacklist.qacoders.dev.br/api/user/690928bcec110178464ac3a5?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJ1c2VySWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJuYW1lIjoiVXN1YXJpbyBkZSBUZXN0ZXMiLCJtYWlsIjoiYmxhY2tsaXN0QHFhY29kZXJzLmNvbSIsImFjY2Vzc1Byb2ZpbGUiOiJBRE1JTiIsImlhdCI6MTc2MjgxNjkzMiwiZXhwIjoxNzYyOTAzMzMyfQ.PmjX3mnePv9lb0O4FfHZbRz5ViiWDGOBuR6XpJLCrEw 
+ status=200, reason=OK 
+ headers={'Access-Control-Allow-Origin': '*', 'Content-Length': '829', 'Content-Type': 'application/json; charset=utf-8', 'Date': 'Mon, 10 Nov 2025 23:22:13 GMT', 'Etag': 'W/"33d-7eygqvftRqpziFFBXWw1yqIMpRE"', 'X-Powered-By': 'Express'} 
+ body={"msg":"Dados atualizados com sucesso!","updatedUser":{"_id":"690928bcec110178464ac3a5","fullName":"Libbie Herman","mail":"usuario.editado132@qacoders.com","password":"5678@Test","accessProfile":"ADMIN","cpf":"13120764592","status":true,"audit":[{"registeredBy":{"userId":"6904cd1b5d3e5cb01f1946a5","userLogin":"sysadmin@qacoders.com"},"registrationDate":"segunda-feira, 03/11/2025, 19:12:11 BRT","registrationNumber":"QaCoders-3","_id":"690928bcec110178464ac3a6"},{"updatedBy":{"userId":"691271b25d3e5cb01f1a4746","userLogin":"blacklist@qacoders.com"},"updateDate":"segunda-feira, 10/11/2025, 20:22:11 BRT","_id":"691273a35d3e5cb01f1a48b5"},{"updatedBy":{"userId":"691271b25d3e5cb01f1a4746","userLogin":"blacklist@qacoders.com"},"updateDate":"segunda-feira, 10/11/2025, 20:22:13 BRT","_id":"691273a55d3e5cb01f1a48c0"}],"__v":0}} 
+ </msg>
+<msg time="2025-11-10T20:22:29.409711" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>alias=develop</arg>
+<arg>url=/user/${USER_ID}?token=${token}</arg>
+<arg>json=${body}</arg>
+<arg>verify=${True}</arg>
+<doc>Sends a PUT request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-11-10T20:22:29.316812" elapsed="0.092970"/>
+</kw>
+<kw name="Status Should Be" owner="RequestsLibrary">
+<arg>200</arg>
+<arg>${response}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" start="2025-11-10T20:22:29.410163" elapsed="0.000438"/>
+</kw>
+<status status="PASS" start="2025-11-10T20:22:28.258984" elapsed="1.151797"/>
+</kw>
+<status status="PASS" start="2025-11-10T20:22:28.258594" elapsed="1.152683"/>
+</test>
+<test id="s1-t6" name="Deletar usuário" line="25">
+<kw name="Deletar usuário cadastrado por id">
+<kw name="Realizar login com credenciais validas e armazenar token">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-11-10T20:22:29.415621" level="INFO">${body} = {'mail': 'blacklist@qacoders.com', 'password': '1234@Test'}</msg>
+<var>${body}</var>
+<arg>mail=${EMAIL}</arg>
+<arg>password=${PASSWORD}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-11-10T20:22:29.414832" elapsed="0.000862"/>
+</kw>
+<kw name="Criar Sessao">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-11-10T20:22:29.416753" level="INFO">${headers} = {'accept': 'application/json', 'Content-Type': 'application/json'}</msg>
+<var>${headers}</var>
+<arg>accept=application/json</arg>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-11-10T20:22:29.416417" elapsed="0.000394"/>
+</kw>
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-11-10T20:22:29.417482" level="INFO">Creating Session using : alias=develop, url=https://api-blacklist.qacoders.dev.br/api, headers={'accept': 'application/json', 'Content-Type': 'application/json'},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>alias=develop</arg>
+<arg>url=${BASE_URL}</arg>
+<arg>headers=${headers}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-11-10T20:22:29.417028" elapsed="0.000934"/>
+</kw>
+<status status="PASS" start="2025-11-10T20:22:29.415991" elapsed="0.002238"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2025-11-10T20:22:30.603599" level="INFO">POST Request : url=https://api-blacklist.qacoders.dev.br/api/login 
+ path_url=/api/login 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'accept': 'application/json', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '59'} 
+ body=b'{"mail": "blacklist@qacoders.com", "password": "1234@Test"}' 
+ </msg>
+<msg time="2025-11-10T20:22:30.603779" level="INFO">POST Response : url=https://api-blacklist.qacoders.dev.br/api/login 
+ status=200, reason=OK 
+ headers={'Access-Control-Allow-Origin': '*', 'Content-Length': '883', 'Content-Type': 'application/json; charset=utf-8', 'Date': 'Mon, 10 Nov 2025 23:22:14 GMT', 'Etag': 'W/"373-/YsFobQgGIU0T8tiSbByJO7TQ38"', 'X-Powered-By': 'Express'} 
+ body={"msg":"Olá Usuario de Testes, autenticação autorizada com sucesso!","user":{"_id":"691271b25d3e5cb01f1a4746","fullName":"Usuario de Testes","mail":"blacklist@qacoders.com","password":"$2b$10$kBWOKWlQsHtE9aPaEjHDNe6CUGKHv9bjpcNmUTTpnq47eTBCAqku6","accessProfile":"ADMIN","cpf":"12395678900","status":true,"audit":[{"registeredBy":{"userId":"69050eab5d3e5cb01f1946e9","userLogin":"diogo@sales.com"},"registrationDate":"segunda-feira, 10/11/2025, 20:13:53 BRT","registrationNumber":"QaCoders-10","_id":"691271b25d3e5cb01f1a4747"}],"__v":0},"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJ1c2VySWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJuYW1lIjoiVXN1YXJpbyBkZSBUZXN0ZXMiLCJtYWlsIjoiYmxhY2tsaXN0QHFhY29kZXJzLmNvbSIsImFjY2Vzc1Byb2ZpbGUiOiJBRE1JTiIsImlhdCI6MTc2MjgxNjkzNCwiZXhwIjoxNzYyOTAzMzM0fQ.fn56JoXs-z0AjcE7UfSy6Or_--RRYarA1tu4Y4Mh4wA"} 
+ </msg>
+<msg time="2025-11-10T20:22:30.604146" level="INFO">${bodyResponse} = &lt;Response [200]&gt;</msg>
+<var>${bodyResponse}</var>
+<arg>alias=develop</arg>
+<arg>url=/login</arg>
+<arg>json=${body}</arg>
+<arg>verify=${True}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-11-10T20:22:29.418581" elapsed="1.185653"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-11-10T20:22:30.605878" level="INFO">{'msg': 'Olá Usuario de Testes, autenticação autorizada com sucesso!', 'user': {'_id': '691271b25d3e5cb01f1a4746', 'fullName': 'Usuario de Testes', 'mail': 'blacklist@qacoders.com', 'password': '$2b$10$kBWOKWlQsHtE9aPaEjHDNe6CUGKHv9bjpcNmUTTpnq47eTBCAqku6', 'accessProfile': 'ADMIN', 'cpf': '12395678900', 'status': True, 'audit': [{'registeredBy': {'userId': '69050eab5d3e5cb01f1946e9', 'userLogin': 'diogo@sales.com'}, 'registrationDate': 'segunda-feira, 10/11/2025, 20:13:53 BRT', 'registrationNumber': 'QaCoders-10', '_id': '691271b25d3e5cb01f1a4747'}], '__v': 0}, 'token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJ1c2VySWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJuYW1lIjoiVXN1YXJpbyBkZSBUZXN0ZXMiLCJtYWlsIjoiYmxhY2tsaXN0QHFhY29kZXJzLmNvbSIsImFjY2Vzc1Byb2ZpbGUiOiJBRE1JTiIsImlhdCI6MTc2MjgxNjkzNCwiZXhwIjoxNzYyOTAzMzM0fQ.fn56JoXs-z0AjcE7UfSy6Or_--RRYarA1tu4Y4Mh4wA'}</msg>
+<arg>${bodyResponse.json()}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-11-10T20:22:30.604537" elapsed="0.001485"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-11-10T20:22:30.607553" level="INFO">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJ1c2VySWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJuYW1lIjoiVXN1YXJpbyBkZSBUZXN0ZXMiLCJtYWlsIjoiYmxhY2tsaXN0QHFhY29kZXJzLmNvbSIsImFjY2Vzc1Byb2ZpbGUiOiJBRE1JTiIsImlhdCI6MTc2MjgxNjkzNCwiZXhwIjoxNzYyOTAzMzM0fQ.fn56JoXs-z0AjcE7UfSy6Or_--RRYarA1tu4Y4Mh4wA</msg>
+<arg>${bodyResponse.json()['token']}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-11-10T20:22:30.606423" elapsed="0.001303"/>
+</kw>
+<kw name="Status Should Be" owner="RequestsLibrary">
+<arg>200</arg>
+<arg>${bodyResponse}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" start="2025-11-10T20:22:30.608032" elapsed="0.000643"/>
+</kw>
+<return>
+<value>${bodyResponse.json()['token']}</value>
+<status status="PASS" start="2025-11-10T20:22:30.608897" elapsed="0.000215"/>
+</return>
+<msg time="2025-11-10T20:22:30.610162" level="INFO">${token} = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJ1c2VySWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJuYW1lIjoiVXN1YXJpbyBkZSBUZXN0ZXMiLCJtYWlsIjoiYmxhY2tsaXN0QHFhY29kZXJ...</msg>
+<var>${token}</var>
+<status status="PASS" start="2025-11-10T20:22:29.414175" elapsed="1.196055"/>
+</kw>
+<kw name="DELETE On Session" owner="RequestsLibrary">
+<msg time="2025-11-10T20:22:30.661807" level="INFO">DELETE Request : url=https://api-blacklist.qacoders.dev.br/api/user/690928bcec110178464ac3a5?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJ1c2VySWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJuYW1lIjoiVXN1YXJpbyBkZSBUZXN0ZXMiLCJtYWlsIjoiYmxhY2tsaXN0QHFhY29kZXJzLmNvbSIsImFjY2Vzc1Byb2ZpbGUiOiJBRE1JTiIsImlhdCI6MTc2MjgxNjkzNCwiZXhwIjoxNzYyOTAzMzM0fQ.fn56JoXs-z0AjcE7UfSy6Or_--RRYarA1tu4Y4Mh4wA 
+ path_url=/api/user/690928bcec110178464ac3a5?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJ1c2VySWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJuYW1lIjoiVXN1YXJpbyBkZSBUZXN0ZXMiLCJtYWlsIjoiYmxhY2tsaXN0QHFhY29kZXJzLmNvbSIsImFjY2Vzc1Byb2ZpbGUiOiJBRE1JTiIsImlhdCI6MTc2MjgxNjkzNCwiZXhwIjoxNzYyOTAzMzM0fQ.fn56JoXs-z0AjcE7UfSy6Or_--RRYarA1tu4Y4Mh4wA 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'accept': 'application/json', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '0'} 
+ body=None 
+ </msg>
+<msg time="2025-11-10T20:22:30.662212" level="INFO">DELETE Response : url=https://api-blacklist.qacoders.dev.br/api/user/690928bcec110178464ac3a5?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJ1c2VySWQiOiI2OTEyNzFiMjVkM2U1Y2IwMWYxYTQ3NDYiLCJuYW1lIjoiVXN1YXJpbyBkZSBUZXN0ZXMiLCJtYWlsIjoiYmxhY2tsaXN0QHFhY29kZXJzLmNvbSIsImFjY2Vzc1Byb2ZpbGUiOiJBRE1JTiIsImlhdCI6MTc2MjgxNjkzNCwiZXhwIjoxNzYyOTAzMzM0fQ.fn56JoXs-z0AjcE7UfSy6Or_--RRYarA1tu4Y4Mh4wA 
+ status=200, reason=OK 
+ headers={'Access-Control-Allow-Origin': '*', 'Content-Length': '40', 'Content-Type': 'application/json; charset=utf-8', 'Date': 'Mon, 10 Nov 2025 23:22:14 GMT', 'Etag': 'W/"28-/o9TEXzNQWt+Xd5MhQwgTjiJJ4E"', 'X-Powered-By': 'Express'} 
+ body={"msg":"Usuário deletado com sucesso."} 
+ </msg>
+<arg>alias=develop</arg>
+<arg>url=/user/${USER_ID}?token=${token}</arg>
+<arg>verify=${True}</arg>
+<doc>Sends a DELETE request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-11-10T20:22:30.610449" elapsed="0.052149"/>
+</kw>
+<status status="PASS" start="2025-11-10T20:22:29.413162" elapsed="1.249827"/>
+</kw>
+<status status="PASS" start="2025-11-10T20:22:29.412173" elapsed="1.251900"/>
+</test>
+<doc>Keywords utilizadas na rota /user</doc>
+<status status="PASS" start="2025-11-10T20:22:22.195939" elapsed="8.471631"/>
+</suite>
+<statistics>
+<total>
+<stat pass="6" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="Users" id="s1" pass="6" fail="0" skip="0">Users</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

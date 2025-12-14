@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.3.2 (Python 3.14.0 on win32)" generated="2025-11-27T20:16:21.171322" rpa="false" schemaversion="5">
+<suite id="s1" name="Users" source="C:\Users\henri\OneDrive\Área de Trabalho\academy\blacklist_academy\robot-framework-testes-frontend_listar\tests\users\users.robot">
+<test id="s1-t1" name="Cenario 01: Listar cadastro de usuário com Sucesso" line="11">
+<kw name="Abrir Navegador" owner="common" type="SETUP">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-11-27T20:16:21.956146" level="INFO">Opening browser 'Chrome' to base url 'https://blacklist.qacoders.dev.br'.</msg>
+<arg>${BASE_URL_UI}</arg>
+<arg>Chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-11-27T20:16:21.955854" elapsed="6.418910"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-11-27T20:16:28.375210" elapsed="0.085106"/>
+</kw>
+<status status="PASS" start="2025-11-27T20:16:21.954847" elapsed="6.505612"/>
+</kw>
+<kw name="Realizar Login" owner="login">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>id:email</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-11-27T20:16:28.461332" elapsed="0.671949"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-11-27T20:16:29.133801" level="INFO">Typing text 'sysadmin@qacoders.com' into text field 'id:email'.</msg>
+<arg>id:email</arg>
+<arg>${FRONTEND_EMAIL}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-11-27T20:16:29.133523" elapsed="0.226416"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>id:password</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-11-27T20:16:29.360204" elapsed="0.023420"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-11-27T20:16:29.384115" level="INFO">Typing text '1234@Test' into text field 'id:password'.</msg>
+<arg>id:password</arg>
+<arg>${FRONTEND_PASSWORD}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-11-27T20:16:29.383830" elapsed="0.115397"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>id:login</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-11-27T20:16:29.499469" elapsed="0.019673"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2025-11-27T20:16:29.519517" level="INFO">Clicking button 'id:login'.</msg>
+<arg>id:login</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2025-11-27T20:16:29.519321" elapsed="0.091933"/>
+</kw>
+<status status="PASS" start="2025-11-27T20:16:28.460976" elapsed="1.150403"/>
+</kw>
+<kw name="Verificar Redirecionamento Para Home" owner="login">
+<kw name="Wait Until Location Is" owner="SeleniumLibrary">
+<arg>${BASE_URL_UI}/home</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the current URL is ``expected``.</doc>
+<status status="PASS" start="2025-11-27T20:16:29.612050" elapsed="1.466616"/>
+</kw>
+<kw name="Location Should Be" owner="SeleniumLibrary">
+<msg time="2025-11-27T20:16:31.084494" level="INFO">Current location is 'https://blacklist.qacoders.dev.br/home'.</msg>
+<arg>${BASE_URL_UI}/home</arg>
+<doc>Verifies that the current URL is exactly ``url``.</doc>
+<status status="PASS" start="2025-11-27T20:16:31.078854" elapsed="0.005733"/>
+</kw>
+<status status="PASS" start="2025-11-27T20:16:29.611755" elapsed="1.472933"/>
+</kw>
+<kw name="Verificar Elemento Cadastros Visivel" owner="login">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>id:Cadastros</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-11-27T20:16:31.085350" elapsed="0.027471"/>
+</kw>
+<kw name="Element Text Should Be" owner="SeleniumLibrary">
+<msg time="2025-11-27T20:16:31.113384" level="INFO">Verifying element 'id:Cadastros' contains exact text 'Cadastros'.</msg>
+<arg>id:Cadastros</arg>
+<arg>Cadastros</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<status status="PASS" start="2025-11-27T20:16:31.113008" elapsed="0.027639"/>
+</kw>
+<status status="PASS" start="2025-11-27T20:16:31.085041" elapsed="0.055721"/>
+</kw>
+<kw name="Acessar Pagina Usuarios" owner="usuarios">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-11-27T20:16:31.141738" level="INFO">Clicking element 'id:Cadastros'.</msg>
+<arg>id:Cadastros</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-11-27T20:16:31.141549" elapsed="0.119102"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>id:Usuários</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-11-27T20:16:31.260862" elapsed="0.251329"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-11-27T20:16:31.512692" level="INFO">Clicking element 'id:Usuários'.</msg>
+<arg>id:Usuários</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-11-27T20:16:31.512435" elapsed="0.121114"/>
+</kw>
+<kw name="Wait Until Location Is" owner="SeleniumLibrary">
+<arg>${BASE_URL_UI}/user</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the current URL is ``expected``.</doc>
+<status status="PASS" start="2025-11-27T20:16:31.634195" elapsed="0.428364"/>
+</kw>
+<kw name="Location Should Be" owner="SeleniumLibrary">
+<msg time="2025-11-27T20:16:32.069259" level="INFO">Current location is 'https://blacklist.qacoders.dev.br/user'.</msg>
+<arg>${BASE_URL_UI}/user</arg>
+<doc>Verifies that the current URL is exactly ``url``.</doc>
+<status status="PASS" start="2025-11-27T20:16:32.062741" elapsed="0.006607"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath://h1[text()='Usuários']</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-11-27T20:16:32.069517" elapsed="0.022537"/>
+</kw>
+<kw name="Element Text Should Be" owner="SeleniumLibrary">
+<msg time="2025-11-27T20:16:32.092564" level="INFO">Verifying element 'xpath://h1[text()='Usuários']' contains exact text 'Usuários'.</msg>
+<arg>xpath://h1[text()='Usuários']</arg>
+<arg>Usuários</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<status status="PASS" start="2025-11-27T20:16:32.092262" elapsed="0.019765"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>id:edit</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-11-27T20:16:32.112244" elapsed="0.652268"/>
+</kw>
+<kw name="Element Text Should Be" owner="SeleniumLibrary">
+<msg time="2025-11-27T20:16:32.765282" level="INFO">Verifying element 'id:edit' contains exact text 'Editar'.</msg>
+<arg>id:edit</arg>
+<arg>Editar</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<status status="PASS" start="2025-11-27T20:16:32.764772" elapsed="0.023856"/>
+</kw>
+<kw name="Scroll Element Into View" owner="SeleniumLibrary">
+<arg>id:firstIndexButton</arg>
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<status status="PASS" start="2025-11-27T20:16:32.788836" elapsed="0.297876"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-11-27T20:16:38.088886" level="INFO">Slept 5 seconds.</msg>
+<arg>5</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-11-27T20:16:33.087503" elapsed="5.001511"/>
+</kw>
+<status status="PASS" start="2025-11-27T20:16:31.141218" elapsed="6.947924"/>
+</kw>
+<kw name="Fechar Navegador" owner="common" type="TEARDOWN">
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2025-11-27T20:16:38.090427" elapsed="2.412966"/>
+</kw>
+<status status="PASS" start="2025-11-27T20:16:38.090020" elapsed="2.413616"/>
+</kw>
+<status status="PASS" start="2025-11-27T20:16:21.953546" elapsed="18.550668"/>
+</test>
+<status status="PASS" start="2025-11-27T20:16:21.174612" elapsed="19.331398"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="Users" id="s1" pass="1" fail="0" skip="0">Users</stat>
+</suite>
+</statistics>
+<errors>
+<msg time="2025-11-27T20:16:21.937213" level="ERROR">Error in file 'C:\Users\henri\OneDrive\Área de Trabalho\academy\blacklist_academy\robot-framework-testes-frontend_listar\resources\generate_random_data.resource' on line 5: Importing library 'FakerLibrary' failed: ModuleNotFoundError: No module named 'FakerLibrary'
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  C:\Users\henri\AppData\Local\Programs\Python\Python314\Scripts\robot.exe
+  C:\Users\henri\AppData\Local\Programs\Python\Python314\python314.zip
+  C:\Users\henri\AppData\Local\Programs\Python\Python314\DLLs
+  C:\Users\henri\AppData\Local\Programs\Python\Python314\Lib
+  C:\Users\henri\AppData\Local\Programs\Python\Python314
+  C:\Users\henri\AppData\Local\Programs\Python\Python314\Lib\site-packages</msg>
+</errors>
+</robot>
