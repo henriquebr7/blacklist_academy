@@ -1,0 +1,512 @@
+{
+	"info": {
+		"_postman_id": "69ec5091-0514-4908-bed6-429220b653e6",
+		"name": "Blacklist",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "48891230",
+		"_collection_link": "https://www.postman.com/henriquebr7-3353485/workspace/blacklist/collection/48891230-69ec5091-0514-4908-bed6-429220b653e6?action=share&source=collection_link&creator=48891230"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "validateToken",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{urlBaase}}/validateToken",
+							"host": [
+								"{{urlBaase}}"
+							],
+							"path": [
+								"validateToken"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();\r",
+									"const token = response.token;\r",
+									"pm.globals.set(\"tokenAdmin\", token);"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"mail\": \"{{loggedUser}}\",\r\n  \"password\": \"{{loggedUserPassword}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{urlBaase}}/login",
+							"host": [
+								"{{urlBaase}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "get_all_user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Status code é 200', () => pm.response.to.have.status(200));",
+									"pm.test('Resposta é um array', () => Array.isArray(pm.response.json()));",
+									"pm.test('Número máximo de registros é 30', () => pm.response.json().length <= 30);",
+									"",
+									"pm.test('Campos obrigatórios existem', () => {",
+									"   const item = pm.response.json()[0];",
+									"   pm.expect(item).to.have.property('fullName');",
+									"   pm.expect(item).to.have.property('mail');",
+									" //  pm.expect(item).to.have.property('departamento');",
+									"});",
+									"",
+									"pm.test('Resultados retornados estão em ordem alfabética', () => {",
+									"   const nomes = pm.response.json().map(u => u.nome);",
+									"   const sorted = [...nomes].sort((a,b) => a.localeCompare(b));",
+									"   pm.expect(nomes).to.eql(sorted);",
+									"});",
+									"",
+									"//excessão",
+									"//  pm.test('Status code é 400 (Bad Request)', () => pm.response.to.have.status(400));",
+									"",
+									"// pm.test('Mensagem de erro adequada', function () {",
+									"//     let json;",
+									"//     try {",
+									"//         json = pm.response.json();",
+									"//     } catch (e) {",
+									"//         pm.expect.fail('Resposta não é um JSON válido');",
+									"//         return;",
+									"//     }",
+									"//     // Verifica se é um erro (status >= 400)",
+									"//     if (pm.response.code == 400) {",
+									"//         // Procura por uma mensagem de erro em campos comuns",
+									"//         const mensagem = json.message || json.error || json.msg || JSON.stringify(json);",
+									"//         pm.expect(mensagem).to.include('3 caracteres');",
+									"//     } else {",
+									"//         pm.expect(true).to.be.true; // Passa o teste se não for erro",
+									"//     }",
+									"// });",
+									"",
+									"",
+									"",
+									"// pm.test('Mensagem apropriada', function () {",
+									"//     pm.expect(pm.response.text()).to.include('página inválida');",
+									"// });"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"users\": \"Retorna uma lista de usuários.\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{urlBaase}}/user",
+							"host": [
+								"{{urlBaase}}"
+							],
+							"path": [
+								"user"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "30",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": "Lucia Pereira",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": "ss",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseJson = pm.response.json();",
+									"",
+									"pm.test('Status code é 201 (Created)', () => {",
+									"    pm.response.to.have.status(201);",
+									"    const json = pm.response.json();",
+									"    if (json.user && json.user.fullName) {",
+									"        pm.environment.set(\"userFullName\", json.user.fullName);",
+									"    }",
+									"});",
+									"",
+									"const userEmail = pm.environment.get(\"mail\");",
+									"if (!userEmail.includes(\"@\")) {",
+									"    pm.test('Status deve ser 400', function () {",
+									"        pm.response.to.have.status(400);",
+									"    });",
+									"    pm.test('Mensagem de erro apropriada', function () {",
+									"        pm.expect(pm.response.text()).to.include('O e-mail informado é inválido');",
+									"    });",
+									"}",
+									"",
+									"pm.environment.set(\"userId\", responseJson.user._id);",
+									"",
+									"",
+									" "
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"function removeAccents(nome) {\r",
+									"    return nome.normalize(\"NFD\").replace(/[\\u0300-\\u036f]/g, \"\");\r",
+									"}\r",
+									" \r",
+									"function firstName() {\r",
+									"    const firstNames = [\"Álvaro\",\"Íris\",\"Régis\",\"Sílvia\",\"Fernando\",\"António\",\"Úrsula\",\"Ítalo\",\"Cássia\",\"Lúcio\"];\r",
+									"    const randomFirstName = firstNames[Math.floor(Math.random() * firstNames.length)];\r",
+									"    return randomFirstName;\r",
+									"}\r",
+									" \r",
+									"function lastName() {\r",
+									"    const lastNames = [\"Camões\",\"Góis\",\"Páris\",\"Vitória\",\"Simões\",\"Guimarães\",\"Côrtes\",\"Márquez\",\"Pássaro\",\"Vásquez\"];\r",
+									"    const randomLastName = lastNames[Math.floor(Math.random() * lastNames.length)];\r",
+									"    return randomLastName;\r",
+									"}\r",
+									"\r",
+									"pm.environment.set(\"firstName\", firstName());\r",
+									"pm.environment.set(\"lastName\", lastName());\r",
+									" \r",
+									" pm.environment.set(\"fullName\", pm.environment.get(\"firstName\") + \" \" + pm.environment.get(\"lastName\"));\r",
+									" \r",
+									"firstNameFormmated = removeAccents(pm.environment.get(\"firstName\").toLowerCase());\r",
+									"lastNameFormmated = removeAccents(pm.environment.get(\"lastName\").toLowerCase());\r",
+									"pm.environment.set(\"mail\", firstNameFormmated + lastNameFormmated + \"@qacoders.com\");\r",
+									"\r",
+									"function randomCpf() {\r",
+									"    let randomCpf = \"\";\r",
+									"    for (let i = 0; i < 11; i++) {\r",
+									"        randomCpf += Math.floor(Math.random() * 10).toString();\r",
+									"    }\r",
+									"    return randomCpf;\r",
+									"}\r",
+									"pm.environment.set(\"cpf\", randomCpf());\r",
+									" \r",
+									" "
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"fullName\": \"{{fullName}}\",\r\n  \"mail\": \"{{mail}}\",\r\n  \"accessProfile\": \"{{accessProfile}}\",\r\n  \"cpf\": \"{{cpf}}\",\r\n  \"password\": \"{{password}}\",\r\n  \"confirmPassword\": \"{{confirmPassword}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{urlBaase}}/user",
+							"host": [
+								"{{urlBaase}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "put_id user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Campos foram atualizados corretamente', () => {\r",
+									"    const json = pm.response.json();\r",
+									"    const expectedName = pm.environment.get(\"userFullName\");\r",
+									"\r",
+									"    pm.expect(json.updatedUser.fullName).to.eql(expectedName); \r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tokenAdmin}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"fullName\": \"{{userFullName}}\",\r\n  \"mail\": \"{{userMail}}\",\r\n  \"accessProfile\": \"{{accessProfile}}\",\r\n  \"cpf\": \"{{userCpf}}\",\r\n  \"password\": \"{{password}}\",\r\n  \"confirmPassword\": \"{{confirmPassword}}\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{urlBaase}}/user/{{userId}}",
+							"host": [
+								"{{urlBaase}}"
+							],
+							"path": [
+								"user",
+								"{{userId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete_id_user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// let userId = pm.variables.get(\"userId\");\r",
+									"\r",
+									"// pm.test('Status code é 200', () => pm.expect([200]).to.include(pm.response.code));\r",
+									"\r",
+									"// if(pm.response.code === 400){\r",
+									"//     pm.test('Status deve ser 400', function () {\r",
+									"//         pm.response.to.have.status(400); \r",
+									"//     });\r",
+									"\r",
+									"//     pm.test('Mensagem de erro apropriada', function () {\r",
+									"//         pm.expect(pm.response.text()).to.include('Esse usuário não existe em');\r",
+									"//     });\r",
+									"// }\r",
+									"\r",
+									"const userExists = pm.environment.get(\"userIdExists\");\r",
+									"\r",
+									"if (userExists === true) {\r",
+									"    pm.test(\"Status code deve ser 200\", () => {\r",
+									"        pm.expect(pm.response.code).to.equal(200);\r",
+									"    });\r",
+									"} else {\r",
+									"    pm.test(\"Status code deve ser 400\", () => {\r",
+									"        pm.expect(pm.response.code).to.equal(400);\r",
+									"    });\r",
+									"\r",
+									"    pm.test(\"Mensagem de erro apropriada\", () => {\r",
+									"        pm.expect(pm.response.text()).to.include(\"usuário não existe\");\r",
+									"    });\r",
+									"}\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const urlBaase = pm.globals.get(\"urlBaase\");\r",
+									"const userId = pm.environment.get(\"userId\");\r",
+									"\r",
+									"pm.sendRequest({\r",
+									"    url: `${urlBaase}/user/${userId}`,\r",
+									"    method: 'GET',\r",
+									"    header: {\r",
+									"        'Authorization': `${pm.globals.get(\"tokenAdmin\")}`\r",
+									"    }\r",
+									"}, function (error, response) {\r",
+									"    if (error) {\r",
+									"        console.error(\"Erro ao buscar usuário por ID\", err);\r",
+									"        return;\r",
+									"    }\r",
+									"    const user = response.json();\r",
+									"    pm.environment.set(\"userIdExists\", !!user._id);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"msg\": \"Usuário deletado com sucesso.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{urlBaase}}/user/{{userId}}",
+							"host": [
+								"{{urlBaase}}"
+							],
+							"path": [
+								"user",
+								"{{userId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "{{tokenAdmin}}",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "Authorization",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
